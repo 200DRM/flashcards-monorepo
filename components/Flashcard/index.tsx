@@ -1,15 +1,29 @@
-import { useState } from "react";
+import { FC, useEffect, useState } from "react";
+
+import { IFlashcardItem } from "../../components/types";
+import { getRandomArrayItem } from "../../helpers/flashcards";
+
 import styles from "../../styles/Home.module.css";
 
-const Flashcard = () => {
-  const [flashcard, setFlashcard] = useState({
-    question:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. Ut enim ad minim veniam, quis nostrud exercitation. Ut enim ad minim veniam, quis nostrud exercitation?",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. Ut enim ad minim veniam, quis nostrud exercitation. Ut enim ad minim veniam, quis nostrud exercitation.",
-  });
+interface IFlashcard {
+  flashcards: IFlashcardItem[];
+}
 
-  return (
+const Flashcard: FC<IFlashcard> = ({ flashcards }) => {
+  const [flashcard, setFlashcard] = useState<IFlashcardItem | null>(null);
+
+  const updateFlashcards = (flashcards: IFlashcardItem[]) => {
+    if (flashcards) {
+      const initialRandomFlashcard = getRandomArrayItem({ flashcards });
+      setFlashcard(initialRandomFlashcard);
+    }
+  };
+
+  useEffect(() => {
+    updateFlashcards(flashcards);
+  }, [flashcards]);
+
+  return flashcard ? (
     <div className={styles.grid}>
       <div className={styles.card}>
         <p>{flashcard.question}</p>
@@ -25,7 +39,7 @@ const Flashcard = () => {
         <p>{flashcard.answer}</p>
       </div>
     </div>
-  );
+  ) : null;
 };
 
 export default Flashcard;
