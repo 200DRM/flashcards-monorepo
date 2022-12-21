@@ -1,14 +1,14 @@
 import { IFlashcardItem } from "../components/types";
 
-interface IGetRandomArrayItem {
+interface IGetRandomFlashcard {
   flashcards: IFlashcardItem[];
   prevItem?: IFlashcardItem;
 }
 
-export const getRandomArrayItem = ({
+export const getRandomFlashcard = ({
   flashcards,
   prevItem,
-}: IGetRandomArrayItem) => {
+}: IGetRandomFlashcard) => {
   const arrayWithoutPrevItem = flashcards.filter((item) => item !== prevItem);
   const arrayLength = arrayWithoutPrevItem.length;
 

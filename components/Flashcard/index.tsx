@@ -1,43 +1,74 @@
-import { FC, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { IFlashcardItem } from "../../components/types";
-import { getRandomArrayItem } from "../../helpers/flashcards";
+import { FlashcardsContext } from "../../contexts/flashcardsContext";
+import { getRandomFlashcard } from "../../helpers/flashcards";
 
-import styles from "../../styles/Home.module.css";
+import styles from "../../styles/Flashcard.module.scss";
 
-interface IFlashcard {
-  flashcards: IFlashcardItem[];
-}
+const Flashcard = () => {
+  const { filterdFlashcards } = useContext(FlashcardsContext);
 
-const Flashcard: FC<IFlashcard> = ({ flashcards }) => {
   const [flashcard, setFlashcard] = useState<IFlashcardItem | null>(null);
+  const [isAnswerVisible, setIsAnswerVisible] = useState(false);
 
-  const updateFlashcards = (flashcards: IFlashcardItem[]) => {
-    if (flashcards) {
-      const initialRandomFlashcard = getRandomArrayItem({ flashcards });
+  const updateFlashcards = (filterdFlashcards: IFlashcardItem[]) => {
+    if (filterdFlashcards) {
+      const initialRandomFlashcard = getRandomFlashcard({
+        flashcards: filterdFlashcards,
+      });
       setFlashcard(initialRandomFlashcard);
     }
   };
 
+  const handleChangeAnswerVisibility = () =>
+    setIsAnswerVisible(!isAnswerVisible);
+
+  const handlePrevious = () => {
+    if (flashcard) {
+      const indexOfCurrentFlashcard = filterdFlashcards.indexOf(flashcard);
+
+      if (indexOfCurrentFlashcard === 0) {
+        setFlashcard(filterdFlashcards[filterdFlashcards.length - 1]);
+      } else {
+        setFlashcard(filterdFlashcards[indexOfCurrentFlashcard - 1]);
+      }
+    }
+  };
+
+  const handleNext = () => {
+    if (flashcard) {
+      const indexOfCurrentFlashcard = filterdFlashcards.indexOf(flashcard);
+
+      if (indexOfCurrentFlashcard === filterdFlashcards.length - 1) {
+        setFlashcard(filterdFlashcards[0]);
+      } else {
+        setFlashcard(filterdFlashcards[indexOfCurrentFlashcard + 1]);
+      }
+    }
+  };
+
   useEffect(() => {
-    updateFlashcards(flashcards);
-  }, [flashcards]);
+    updateFlashcards(filterdFlashcards);
+  }, [filterdFlashcards]);
 
   return flashcard ? (
     <div className={styles.grid}>
-      <div className={styles.card}>
+      <div className={styles.navigation}>
+        <button onClick={handlePrevious}>&larr;</button>
+        <button onClick={handleChangeAnswerVisibility}>
+          {isAnswerVisible ? "HIDE" : "SHOW"}
+        </button>
+        <button onClick={handleNext}>&rarr;</button>
+      </div>
+      <div className={styles.card} onClick={handleChangeAnswerVisibility}>
         <p>{flashcard.question}</p>
       </div>
-
-      <div>
-        <button>&rarr;</button>
-        <button>&rarr;</button>
-        <button>&rarr;</button>
-      </div>
-
-      <div className={styles.card}>
-        <p>{flashcard.answer}</p>
-      </div>
+      {isAnswerVisible ? (
+        <div className={styles.card} onClick={handleChangeAnswerVisibility}>
+          <p>{flashcard.answer}</p>
+        </div>
+      ) : null}
     </div>
   ) : null;
 };

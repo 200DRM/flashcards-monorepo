@@ -1,4 +1,4 @@
-export type CategoryName = "frontend" | "backend" | "ux_ui";
+export type CategoryName = "all" | "frontend" | "other";
 export interface IFlashcardItem {
   answer: string;
   category: CategoryName;

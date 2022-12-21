@@ -1,34 +1,42 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 
-import { CategoryName, IFlashcardItem } from "../../components/types";
-
-import { allFlashcards } from "../../pages/mockups/allFlashcards";
+import { CategoryName } from "../../components/types";
+import { FlashcardsContext } from "../../contexts/flashcardsContext";
 
 interface ICategoryButton {
   category: CategoryName | null;
   categoryName: CategoryName;
   setCategory: (category: CategoryName | null) => void;
-  setFlashcards: (flashcards: IFlashcardItem[]) => void;
 }
 
 const CategoryButton: FC<ICategoryButton> = ({
   category,
   categoryName,
   setCategory,
-  setFlashcards,
 }) => {
-  const handleCategoryChange = (categoryName: CategoryName) => {
-    const categoryNameAlreadyActive = category === categoryName;
-    const newFlashcards = categoryNameAlreadyActive
-      ? allFlashcards
-      : allFlashcards.filter((item) => item.category === categoryName);
+  const { allFlashcards, setFilteredFlashcards } =
+    useContext(FlashcardsContext);
 
-    setCategory(categoryNameAlreadyActive ? null : categoryName);
-    setFlashcards(newFlashcards);
+  const flashcardsFilteredByCategory = allFlashcards.filter(
+    (item) => item.category === categoryName
+  );
+  const numberOfFlashcardsInCategory =
+    categoryName === "all"
+      ? allFlashcards.length
+      : flashcardsFilteredByCategory.length;
+
+  const handleCategoryChange = (categoryName: CategoryName) => {
+    const shouldShowAll = category === categoryName || categoryName === "all";
+    const newFlashcards = shouldShowAll
+      ? allFlashcards
+      : flashcardsFilteredByCategory;
+
+    setCategory(shouldShowAll ? null : categoryName);
+    setFilteredFlashcards(newFlashcards);
   };
   return (
     <button onClick={() => handleCategoryChange(categoryName)}>
-      {categoryName}
+      {categoryName} ({numberOfFlashcardsInCategory})
     </button>
   );
 };
