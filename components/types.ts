@@ -4,4 +4,5 @@ export interface IFlashcardItem {
   category: CategoryName;
   question: string;
   id: number;
+  visible?: boolean;
 }

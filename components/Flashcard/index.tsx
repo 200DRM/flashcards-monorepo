@@ -57,7 +57,7 @@ const Flashcard = () => {
       <div className={styles.navigation}>
         <button onClick={handlePrevious}>&larr;</button>
         <button onClick={handleChangeAnswerVisibility}>
-          {isAnswerVisible ? "HIDE" : "SHOW"}
+          {isAnswerVisible ? "HIDE" : "SHOW"} ANSWER
         </button>
         <button onClick={handleNext}>&rarr;</button>
       </div>

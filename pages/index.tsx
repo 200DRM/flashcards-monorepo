@@ -17,15 +17,24 @@ export default function Home() {
   );
 
   useEffect(() => {
+    let subscribe = true;
     if (filterdFlashcards.length < 1) {
       fetchNewFlashcards()
         .then((data) => {
-          setAllFlashcards(data as IFlashcardItem[]);
-          setFilteredFlashcards(data as IFlashcardItem[]);
-          sessionStorage.setItem("numberOfAllFlashcards", String(data.length));
+          if (subscribe) {
+            setAllFlashcards(data as IFlashcardItem[]);
+            setFilteredFlashcards(data as IFlashcardItem[]);
+            sessionStorage.setItem(
+              "numberOfAllFlashcards",
+              String(data.length)
+            );
+          }
         })
         .catch((err) => console.log(err));
     }
+    return () => {
+      subscribe = false;
+    };
   }, []);
 
   return (
