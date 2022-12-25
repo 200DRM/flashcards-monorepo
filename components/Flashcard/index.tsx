@@ -1,3 +1,5 @@
+import classNames from "classnames";
+import DOMPurify from "dompurify";
 import { useContext, useEffect, useState } from "react";
 
 import { IFlashcardItem } from "../../components/types";
@@ -6,11 +8,13 @@ import { getRandomFlashcard } from "../../helpers/flashcards";
 
 import styles from "../../styles/Flashcard.module.scss";
 
-const Flashcard = () => {
+export const Flashcard = () => {
   const { filterdFlashcards } = useContext(FlashcardsContext);
 
   const [flashcard, setFlashcard] = useState<IFlashcardItem | null>(null);
   const [isAnswerVisible, setIsAnswerVisible] = useState(false);
+
+  const sanitizer = DOMPurify.sanitize;
 
   const updateFlashcards = (filterdFlashcards: IFlashcardItem[]) => {
     if (filterdFlashcards) {
@@ -54,6 +58,13 @@ const Flashcard = () => {
 
   return flashcard ? (
     <div className={styles.grid}>
+      <div
+        className={classNames(styles.card, styles.question)}
+        dangerouslySetInnerHTML={{
+          __html: sanitizer(flashcard.question),
+        }}
+        onClick={handleChangeAnswerVisibility}
+      />
       <div className={styles.navigation}>
         <button onClick={handlePrevious}>&larr;</button>
         <button onClick={handleChangeAnswerVisibility}>
@@ -61,16 +72,14 @@ const Flashcard = () => {
         </button>
         <button onClick={handleNext}>&rarr;</button>
       </div>
-      <div className={styles.card} onClick={handleChangeAnswerVisibility}>
-        <p>{flashcard.question}</p>
-      </div>
       {isAnswerVisible ? (
-        <div className={styles.card} onClick={handleChangeAnswerVisibility}>
-          <p>{flashcard.answer}</p>
-        </div>
+        <div
+          className={classNames(styles.card, styles.answer)}
+          dangerouslySetInnerHTML={{
+            __html: sanitizer(flashcard.answer),
+          }}
+        />
       ) : null}
     </div>
   ) : null;
 };
-
-export default Flashcard;

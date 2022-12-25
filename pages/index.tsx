@@ -1,9 +1,9 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 
-import CategoryButton from "../components/CategoryButton";
-import Flashcard from "../components/Flashcard";
-import { CategoryName, IFlashcardItem } from "../components/types";
+import { Categories } from "../components/Categories";
+import { Flashcard } from "../components/Flashcard";
+import { IFlashcardItem } from "../components/types";
 import { FlashcardsContext } from "../contexts/flashcardsContext";
 import { fetchNewFlashcards } from "../src/handles/flashcards";
 
@@ -11,7 +11,6 @@ import styles from "../styles/Home.module.scss";
 
 export default function Home() {
   const [allFlashcards, setAllFlashcards] = useState<IFlashcardItem[]>([]);
-  const [category, setCategory] = useState<CategoryName | null>(null);
   const [filterdFlashcards, setFilteredFlashcards] = useState<IFlashcardItem[]>(
     []
   );
@@ -53,26 +52,11 @@ export default function Home() {
       <FlashcardsContext.Provider
         value={{ allFlashcards, filterdFlashcards, setFilteredFlashcards }}
       >
-        <main className={styles.main}>
+        <div className={styles.header}>
           <h1 className={styles.title}>FroDevApp</h1>
-          <div className={styles.categoriesMenu}>
-            <span>categories: </span>
-            <CategoryButton
-              category={category}
-              categoryName="all"
-              setCategory={setCategory}
-            />
-            <CategoryButton
-              category={category}
-              categoryName="frontend"
-              setCategory={setCategory}
-            />
-            <CategoryButton
-              category={category}
-              categoryName="other"
-              setCategory={setCategory}
-            />
-          </div>
+        </div>
+        <main className={styles.main}>
+          <Categories />
           <Flashcard />
         </main>
       </FlashcardsContext.Provider>

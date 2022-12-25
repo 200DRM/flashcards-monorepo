@@ -7,26 +7,42 @@
 }
 
 .card {
-  cursor: pointer;
-  margin: 1rem;
-  padding: 1.5rem;
+  padding: 2rem;
   text-align: left;
   color: inherit;
+  text-align: center;
   text-decoration: none;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: all 0.5s ease, border-color 0.15s ease;
   width: 100%;
+}
+
+.question {
+  cursor: pointer;
+  min-height: 10rem;
+
+  @media (min-width: 1000px) {
+    font-size: 2rem;
+    line-height: 2.2rem;
+  }
 
   &:hover {
-    background: rgb(17, 16, 16);
+    text-shadow: #1e7c7e 1px 0 18px;
+  }
+}
+
+.answer {
+  background: #0f3d3e;
+  margin-top: 0.1rem;
+  min-height: 22rem;
+
+  @media (min-width: 1000px) {
+    margin-top: 2rem;
   }
 }
 
 .navigation {
   & button {
-    cursor: pointer;
-    min-width: 26vw;
+    min-width: 32vw;
 
     @media (min-width: 1000px) {
       min-width: 12vw;

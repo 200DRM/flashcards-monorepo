@@ -1,0 +1,12 @@
+.categoriesMenu {
+  padding: 1em;
+}
+
+.categoriesMenu button {
+  cursor: pointer;
+  min-width: 20vw;
+
+  @media (min-width: 1000px) {
+    min-width: 10vw;
+  }
+}

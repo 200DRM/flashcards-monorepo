@@ -1,0 +1,43 @@
+html,
+body {
+  background: linear-gradient(#100f0f, #0f3d3e);
+  color: rgb(245, 245, 245);
+  font-size: 1.1rem;
+  padding: 0;
+  margin: 0;
+  font-family: "Trebuchet MS", "sans-serif";
+  line-height: 1.6rem;
+  min-height: 100vh;
+  width: 100vw;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button {
+  background: #0f3d3e;
+  border: none;
+  border-radius: 6px;
+  color: rgb(245, 245, 245);
+  cursor: pointer;
+  margin: 0.1rem;
+  padding: 0.4rem;
+  transition: all 0.5s ease;
+
+  &:hover {
+    background: #156364;
+  }
+}
+
+code {
+  background: rgb(40, 40, 40);
+  border-radius: 6px;
+  box-shadow: 1px 1px 1px rgb(13, 12, 12);
+  padding: 0.2rem;
+}
