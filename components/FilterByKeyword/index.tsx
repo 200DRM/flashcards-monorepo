@@ -27,8 +27,11 @@ export const FilterByKeyword = () => {
 
   return (
     <div className={styles.filter}>
-      <input onChange={handleChange} type="search" />
-      <button>🔍</button>
+      <input
+        onChange={handleChange}
+        placeholder="🔍 Type a keyword to filter flashcards..."
+        type="search"
+      />
     </div>
   );
 };

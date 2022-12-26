@@ -66,11 +66,18 @@ export const Flashcard = () => {
         onClick={handleChangeAnswerVisibility}
       />
       <div className={styles.navigation}>
-        <button onClick={handlePrevious}>&larr;</button>
-        <button onClick={handleChangeAnswerVisibility}>
+        <button className={styles.arrow} onClick={handlePrevious}>
+          &larr;
+        </button>
+        <button
+          className={styles.visibility}
+          onClick={handleChangeAnswerVisibility}
+        >
           {isAnswerVisible ? "HIDE" : "SHOW"} ANSWER
         </button>
-        <button onClick={handleNext}>&rarr;</button>
+        <button className={styles.arrow} onClick={handleNext}>
+          &rarr;
+        </button>
       </div>
       {isAnswerVisible ? (
         <div

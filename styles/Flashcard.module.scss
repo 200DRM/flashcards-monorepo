@@ -42,7 +42,21 @@
 }
 
 .navigation {
-  & button {
+  padding-bottom: 2rem;
+
+  @media (min-width: 1000px) {
+    padding-bottom: 0;
+  }
+
+  & .arrow {
+    min-width: 22vw;
+
+    @media (min-width: 1000px) {
+      min-width: 12vw;
+    }
+  }
+
+  & .visibility {
     min-width: 32vw;
 
     @media (min-width: 1000px) {

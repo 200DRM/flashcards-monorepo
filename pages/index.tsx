@@ -43,12 +43,12 @@ export default function Home() {
     <div className={styles.container}>
       <Head>
         <title>
-          FroDevApp - flashcards to learn front-end development and other
+          Dev Learn App - flashcards to learn front-end development and other
           IT-related theory
         </title>
         <meta
           name="description"
-          content="FroDevApp - flashcards to learn front-end development theory and more"
+          content="Dev Learn App - flashcards to learn front-end development theory and more"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -62,7 +62,7 @@ export default function Home() {
         }}
       >
         <div className={styles.header}>
-          <h1 className={styles.title}>FroDevApp</h1>
+          <h1 className={styles.title}>Dev Learn App</h1>
         </div>
         <main className={styles.main}>
           <div className={styles.filters}>
