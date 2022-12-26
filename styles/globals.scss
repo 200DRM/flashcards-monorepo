@@ -29,6 +29,7 @@ button {
   margin: 0.1rem;
   padding: 0.4rem;
   transition: all 0.5s ease;
+  outline: none;
 
   &:hover {
     background: #156364;
@@ -40,4 +41,20 @@ code {
   border-radius: 6px;
   box-shadow: 1px 1px 1px rgb(13, 12, 12);
   padding: 0.2rem;
+}
+
+input {
+  background: rgb(245, 245, 245);
+  border: none;
+  border-radius: 6px;
+  color: #100f0f;
+  cursor: pointer;
+  margin: 0.1rem;
+  padding: 0.4rem;
+  transition: all 0.5s ease;
+  outline: none;
+
+  &:hover {
+    box-shadow: rgb(245, 245, 245) 1px 0 6px;
+  }
 }

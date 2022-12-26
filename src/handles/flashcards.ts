@@ -1,5 +1,5 @@
-import { getDatabase, get, onValue, ref } from "firebase/database";
 import { addDoc, getDocs, collection } from "@firebase/firestore";
+import mockedFlashcards from "../../mockups/mockedFlashcards";
 import { firestore } from "../firebase_setup/firebase";
 
 interface IAddNewFlashcard {
@@ -32,9 +32,13 @@ export const addNewFlashcard = ({
 };
 
 export const fetchNewFlashcards = async () => {
-  const colRef = collection(firestore, "flashcards/");
-  const snapshots = await getDocs(colRef);
-  const flashcards = snapshots.docs.map((doc) => doc.data());
+  if (process.env.NEXT_PUBLIC_API_KEY) {
+    const colRef = collection(firestore, "flashcards/");
+    const snapshots = await getDocs(colRef);
+    const flashcards = snapshots.docs.map((doc) => doc.data());
 
-  return flashcards;
+    return flashcards;
+  } else {
+    return mockedFlashcards;
+  }
 };

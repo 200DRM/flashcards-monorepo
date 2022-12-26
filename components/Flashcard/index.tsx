@@ -9,17 +9,17 @@ import { getRandomFlashcard } from "../../helpers/flashcards";
 import styles from "../../styles/Flashcard.module.scss";
 
 export const Flashcard = () => {
-  const { filterdFlashcards } = useContext(FlashcardsContext);
+  const { filteredFlashcards } = useContext(FlashcardsContext);
 
   const [flashcard, setFlashcard] = useState<IFlashcardItem | null>(null);
   const [isAnswerVisible, setIsAnswerVisible] = useState(false);
 
   const sanitizer = DOMPurify.sanitize;
 
-  const updateFlashcards = (filterdFlashcards: IFlashcardItem[]) => {
-    if (filterdFlashcards) {
+  const updateFlashcards = (filteredFlashcards: IFlashcardItem[]) => {
+    if (filteredFlashcards) {
       const initialRandomFlashcard = getRandomFlashcard({
-        flashcards: filterdFlashcards,
+        flashcards: filteredFlashcards,
       });
       setFlashcard(initialRandomFlashcard);
     }
@@ -30,31 +30,31 @@ export const Flashcard = () => {
 
   const handlePrevious = () => {
     if (flashcard) {
-      const indexOfCurrentFlashcard = filterdFlashcards.indexOf(flashcard);
+      const indexOfCurrentFlashcard = filteredFlashcards.indexOf(flashcard);
 
       if (indexOfCurrentFlashcard === 0) {
-        setFlashcard(filterdFlashcards[filterdFlashcards.length - 1]);
+        setFlashcard(filteredFlashcards[filteredFlashcards.length - 1]);
       } else {
-        setFlashcard(filterdFlashcards[indexOfCurrentFlashcard - 1]);
+        setFlashcard(filteredFlashcards[indexOfCurrentFlashcard - 1]);
       }
     }
   };
 
   const handleNext = () => {
     if (flashcard) {
-      const indexOfCurrentFlashcard = filterdFlashcards.indexOf(flashcard);
+      const indexOfCurrentFlashcard = filteredFlashcards.indexOf(flashcard);
 
-      if (indexOfCurrentFlashcard === filterdFlashcards.length - 1) {
-        setFlashcard(filterdFlashcards[0]);
+      if (indexOfCurrentFlashcard === filteredFlashcards.length - 1) {
+        setFlashcard(filteredFlashcards[0]);
       } else {
-        setFlashcard(filterdFlashcards[indexOfCurrentFlashcard + 1]);
+        setFlashcard(filteredFlashcards[indexOfCurrentFlashcard + 1]);
       }
     }
   };
 
   useEffect(() => {
-    updateFlashcards(filterdFlashcards);
-  }, [filterdFlashcards]);
+    updateFlashcards(filteredFlashcards);
+  }, [filteredFlashcards]);
 
   return flashcard ? (
     <div className={styles.grid}>

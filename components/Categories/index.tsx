@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 
 import CategoryButton from "../../components/CategoryButton";
+import { FlashcardsContext } from "../../contexts/flashcardsContext";
 
 import styles from "../../styles/Categories.module.scss";
-import { CategoryName } from "../types";
 
 export const Categories = () => {
-  const [category, setCategory] = useState<CategoryName | null>(null);
+  const { category, setCategory } = useContext(FlashcardsContext);
 
   return (
     <div className={styles.categoriesMenu}>

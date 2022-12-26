@@ -1,9 +1,11 @@
 import { createContext } from "react";
-import { IFlashcardItem } from "../components/types";
+import { CategoryName, IFlashcardItem } from "../components/types";
 
 interface IProps {
   allFlashcards: IFlashcardItem[];
-  filterdFlashcards: IFlashcardItem[];
+  category: CategoryName | null;
+  filteredFlashcards: IFlashcardItem[];
+  setCategory: (category: CategoryName | null) => void;
   setFilteredFlashcards: (flashcards: IFlashcardItem[]) => void;
 }
 

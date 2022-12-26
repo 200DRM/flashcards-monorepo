@@ -2,22 +2,25 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 
 import { Categories } from "../components/Categories";
+import { FilterByKeyword } from "../components/FilterByKeyword";
 import { Flashcard } from "../components/Flashcard";
 import { IFlashcardItem } from "../components/types";
 import { FlashcardsContext } from "../contexts/flashcardsContext";
 import { fetchNewFlashcards } from "../src/handles/flashcards";
+import { CategoryName } from "../components/types";
 
 import styles from "../styles/Home.module.scss";
 
 export default function Home() {
   const [allFlashcards, setAllFlashcards] = useState<IFlashcardItem[]>([]);
-  const [filterdFlashcards, setFilteredFlashcards] = useState<IFlashcardItem[]>(
-    []
-  );
+  const [category, setCategory] = useState<CategoryName | null>(null);
+  const [filteredFlashcards, setFilteredFlashcards] = useState<
+    IFlashcardItem[]
+  >([]);
 
   useEffect(() => {
     let subscribe = true;
-    if (filterdFlashcards.length < 1) {
+    if (filteredFlashcards.length < 1) {
       fetchNewFlashcards()
         .then((data) => {
           if (subscribe) {
@@ -50,13 +53,22 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <FlashcardsContext.Provider
-        value={{ allFlashcards, filterdFlashcards, setFilteredFlashcards }}
+        value={{
+          allFlashcards,
+          category,
+          filteredFlashcards,
+          setCategory,
+          setFilteredFlashcards,
+        }}
       >
         <div className={styles.header}>
           <h1 className={styles.title}>FroDevApp</h1>
         </div>
         <main className={styles.main}>
-          <Categories />
+          <div className={styles.filters}>
+            <FilterByKeyword />
+            <Categories />
+          </div>
           <Flashcard />
         </main>
       </FlashcardsContext.Provider>
