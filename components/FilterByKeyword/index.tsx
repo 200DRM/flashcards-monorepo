@@ -9,21 +9,21 @@ export const FilterByKeyword = () => {
   const [keyword, setKeyword] = useState("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setKeyword(e.target.value);
+    setKeyword(e.target.value.toLowerCase());
   };
 
   useEffect(() => {
     if (allFlashcards.length > 0) {
       const debounce = setTimeout(() => {
         const filteredFlashcards = allFlashcards.filter((item) =>
-          item.question.includes(keyword)
+          item.question.toLowerCase().includes(keyword)
         );
         setFilteredFlashcards(filteredFlashcards);
         setCategory(null);
       }, 400);
       return () => clearTimeout(debounce);
     }
-  }, [keyword]);
+  }, [keyword, setCategory, setFilteredFlashcards]);
 
   return (
     <div className={styles.filter}>
