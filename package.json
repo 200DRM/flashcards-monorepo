@@ -12,9 +12,7 @@
     "prepare": "husky install"
   },
   "husky": {
-    "hooks": {
-      "pre-commit": "npm run prettier && npm run lint"
-    }
+    "hooks": {}
   },
   "dependencies": {
     "@types/node": "18.11.14",
