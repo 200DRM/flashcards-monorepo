@@ -1,12 +1,18 @@
 import { createContext } from "react";
-import { CategoryName, IFlashcardItem } from "../components/types";
+import {
+  CategoryName,
+  FlashcardID,
+  IFlashcardItem,
+} from "@app/components/types";
 
 interface IProps {
   allFlashcards: IFlashcardItem[];
-  category: CategoryName | null;
+  category: CategoryName;
   filteredFlashcards: IFlashcardItem[];
-  setCategory: (category: CategoryName | null) => void;
+  starredFlashcardsIDs: FlashcardID[] | null;
+  setCategory: (category: CategoryName) => void;
   setFilteredFlashcards: (flashcards: IFlashcardItem[]) => void;
+  setStarredFlashcardsIDs: (ids: FlashcardID[]) => void;
 }
 
 export const FlashcardsContext = createContext({} as IProps);

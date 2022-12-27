@@ -1,12 +1,14 @@
 .categoriesMenu {
   padding: 1em;
-}
+  text-align: center;
+  transition: all 0.5s ease-in-out;
 
-.categoriesMenu button {
-  cursor: pointer;
-  min-width: 20vw;
+  button {
+    cursor: pointer;
+    min-width: 12vw;
 
-  @media (min-width: 1000px) {
-    min-width: 10vw;
+    @media (min-width: 1000px) {
+      min-width: 10vw;
+    }
   }
 }

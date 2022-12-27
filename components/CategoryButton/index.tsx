@@ -1,44 +1,33 @@
+import classNames from "classnames";
 import { FC, useContext } from "react";
 
-import { CategoryName } from "../../components/types";
-import { FlashcardsContext } from "../../contexts/flashcardsContext";
+import { CategoryName, ICategoryButton } from "@app/components/types";
+import { FlashcardsContext } from "@app/contexts/flashcardsContext";
 
-interface ICategoryButton {
-  category: CategoryName | null;
-  categoryName: CategoryName;
-  setCategory: (category: CategoryName | null) => void;
-}
-
-const CategoryButton: FC<ICategoryButton> = ({
+export const CategoryButton: FC<ICategoryButton> = ({
   category,
   categoryName,
+  flashcardsByCategory,
+  numberOfFlashcards = 0,
   setCategory,
 }) => {
   const { allFlashcards, setFilteredFlashcards } =
     useContext(FlashcardsContext);
 
-  const flashcardsFilteredByCategory = allFlashcards.filter(
-    (item) => item.category === categoryName
-  );
-  const numberOfFlashcardsInCategory =
-    categoryName === "all"
-      ? allFlashcards.length
-      : flashcardsFilteredByCategory.length;
-
   const handleCategoryChange = (categoryName: CategoryName) => {
     const shouldShowAll = category === categoryName || categoryName === "all";
-    const newFlashcards = shouldShowAll
-      ? allFlashcards
-      : flashcardsFilteredByCategory;
+    const newFlashcards = shouldShowAll ? allFlashcards : flashcardsByCategory;
 
-    setCategory(shouldShowAll ? null : categoryName);
+    setCategory(shouldShowAll ? "all" : categoryName);
     setFilteredFlashcards(newFlashcards);
   };
+
   return (
-    <button onClick={() => handleCategoryChange(categoryName)}>
-      {categoryName} ({numberOfFlashcardsInCategory})
+    <button
+      className={classNames({ active: categoryName === category })}
+      onClick={() => handleCategoryChange(categoryName)}
+    >
+      {categoryName} ({numberOfFlashcards})
     </button>
   );
 };
-
-export default CategoryButton;

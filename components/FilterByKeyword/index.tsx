@@ -1,7 +1,8 @@
 import React, { ChangeEvent, useContext, useEffect, useState } from "react";
-import { FlashcardsContext } from "../../contexts/flashcardsContext";
 
-import styles from "../../styles/FilterByKeyword.module.scss";
+import { FlashcardsContext } from "@app/contexts/flashcardsContext";
+
+import styles from "@app/styles/FilterByKeyword.module.scss";
 
 export const FilterByKeyword = () => {
   const { allFlashcards, setCategory, setFilteredFlashcards } =
@@ -19,10 +20,11 @@ export const FilterByKeyword = () => {
           item.question.toLowerCase().includes(keyword)
         );
         setFilteredFlashcards(filteredFlashcards);
-        setCategory(null);
+        setCategory("all");
       }, 400);
       return () => clearTimeout(debounce);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [keyword, setCategory, setFilteredFlashcards]);
 
   return (
