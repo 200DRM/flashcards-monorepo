@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react";
 
-import { addNewFlashcard } from "../../src/handles/flashcards";
+import { addNewFlashcard } from "@app/src/handles/flashcards";
 
 export const AddFlashcardForm = () => {
   const [answer, setAnswer] = useState("");

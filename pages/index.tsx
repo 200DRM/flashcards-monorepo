@@ -1,22 +1,25 @@
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-import { Categories } from "../components/Categories";
-import { FilterByKeyword } from "../components/FilterByKeyword";
-import { Flashcard } from "../components/Flashcard";
-import { IFlashcardItem } from "../components/types";
-import { FlashcardsContext } from "../contexts/flashcardsContext";
-import { fetchNewFlashcards } from "../src/handles/flashcards";
-import { CategoryName } from "../components/types";
+import { Categories } from "@app/components/Categories";
+import { FilterByKeyword } from "@app/components/FilterByKeyword";
+import { Flashcard } from "@app/components/Flashcard";
+import { IFlashcardItem } from "@app/components/types";
+import { FlashcardsContext } from "@app/contexts/flashcardsContext";
+import { fetchNewFlashcards } from "@app/src/handles/flashcards";
+import { CategoryName } from "@app/components/types";
 
-import styles from "../styles/Home.module.scss";
+import styles from "@app/styles/Home.module.scss";
 
 export default function Home() {
   const [allFlashcards, setAllFlashcards] = useState<IFlashcardItem[]>([]);
-  const [category, setCategory] = useState<CategoryName | null>(null);
+  const [category, setCategory] = useState<CategoryName>("all");
   const [filteredFlashcards, setFilteredFlashcards] = useState<
     IFlashcardItem[]
   >([]);
+  const [starredFlashcardsIDs, setStarredFlashcardsIDs] = useState<
+    string[] | null
+  >(null);
 
   useEffect(() => {
     let subscribe = true;
@@ -37,6 +40,7 @@ export default function Home() {
     return () => {
       subscribe = false;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -59,6 +63,8 @@ export default function Home() {
           filteredFlashcards,
           setCategory,
           setFilteredFlashcards,
+          setStarredFlashcardsIDs,
+          starredFlashcardsIDs,
         }}
       >
         <div className={styles.header}>

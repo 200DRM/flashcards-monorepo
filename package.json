@@ -7,7 +7,12 @@
     "dev": "PORT=3001 next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier": "prettier --write .",
+    "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {}
   },
   "dependencies": {
     "@types/node": "18.11.14",
@@ -27,6 +32,7 @@
   },
   "devDependencies": {
     "@types/dompurify": "^2.4.0",
+    "husky": "^8.0.2",
     "prettier": "2.8.1"
   }
 }

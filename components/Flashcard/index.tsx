@@ -2,14 +2,21 @@ import classNames from "classnames";
 import DOMPurify from "dompurify";
 import { useContext, useEffect, useState } from "react";
 
-import { IFlashcardItem } from "../../components/types";
-import { FlashcardsContext } from "../../contexts/flashcardsContext";
-import { getRandomFlashcard } from "../../helpers/flashcards";
+import { IFlashcardItem } from "@app/components/types";
+import { FlashcardActions } from "@app/components/Flashcard/FlashcardActions";
+import { FlashcardsContext } from "@app/contexts/flashcardsContext";
+import {
+  getRandomFlashcard,
+  handleNextFlashcard,
+  handlePreviousFlashcard,
+  setStarredFlashcardOnLoad,
+} from "@app/helpers/flashcards";
 
-import styles from "../../styles/Flashcard.module.scss";
+import styles from "@app/styles/Flashcard.module.scss";
 
 export const Flashcard = () => {
-  const { filteredFlashcards } = useContext(FlashcardsContext);
+  const { filteredFlashcards, starredFlashcardsIDs, setStarredFlashcardsIDs } =
+    useContext(FlashcardsContext);
 
   const [flashcard, setFlashcard] = useState<IFlashcardItem | null>(null);
   const [isAnswerVisible, setIsAnswerVisible] = useState(false);
@@ -28,45 +35,41 @@ export const Flashcard = () => {
   const handleChangeAnswerVisibility = () =>
     setIsAnswerVisible(!isAnswerVisible);
 
-  const handlePrevious = () => {
-    if (flashcard) {
-      const indexOfCurrentFlashcard = filteredFlashcards.indexOf(flashcard);
-
-      if (indexOfCurrentFlashcard === 0) {
-        setFlashcard(filteredFlashcards[filteredFlashcards.length - 1]);
-      } else {
-        setFlashcard(filteredFlashcards[indexOfCurrentFlashcard - 1]);
-      }
-    }
-  };
-
-  const handleNext = () => {
-    if (flashcard) {
-      const indexOfCurrentFlashcard = filteredFlashcards.indexOf(flashcard);
-
-      if (indexOfCurrentFlashcard === filteredFlashcards.length - 1) {
-        setFlashcard(filteredFlashcards[0]);
-      } else {
-        setFlashcard(filteredFlashcards[indexOfCurrentFlashcard + 1]);
-      }
-    }
-  };
-
   useEffect(() => {
     updateFlashcards(filteredFlashcards);
   }, [filteredFlashcards]);
 
+  useEffect(() => {
+    setStarredFlashcardOnLoad({
+      contextLength: starredFlashcardsIDs?.length,
+      setStarredFlashcardsIDs,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [setStarredFlashcardsIDs]);
+
   return flashcard ? (
     <div className={styles.grid}>
-      <div
-        className={classNames(styles.card, styles.question)}
-        dangerouslySetInnerHTML={{
-          __html: sanitizer(flashcard.question),
-        }}
-        onClick={handleChangeAnswerVisibility}
-      />
+      <div className={classNames(styles.card, styles.question)}>
+        <div
+          className={classNames(styles.cardContent)}
+          dangerouslySetInnerHTML={{
+            __html: sanitizer(flashcard.question),
+          }}
+          onClick={handleChangeAnswerVisibility}
+        />
+        <FlashcardActions flashcardID={flashcard.id} />
+      </div>
       <div className={styles.navigation}>
-        <button className={styles.arrow} onClick={handlePrevious}>
+        <button
+          className={styles.arrow}
+          onClick={() =>
+            handlePreviousFlashcard({
+              flashcard,
+              filteredFlashcards,
+              setFlashcard,
+            })
+          }
+        >
           &larr;
         </button>
         <button
@@ -75,7 +78,12 @@ export const Flashcard = () => {
         >
           {isAnswerVisible ? "HIDE" : "SHOW"} ANSWER
         </button>
-        <button className={styles.arrow} onClick={handleNext}>
+        <button
+          className={styles.arrow}
+          onClick={() =>
+            handleNextFlashcard({ flashcard, filteredFlashcards, setFlashcard })
+          }
+        >
           &rarr;
         </button>
       </div>

@@ -1,6 +1,6 @@
 import { addDoc, getDocs, collection } from "@firebase/firestore";
-import mockedFlashcards from "../../mockups/mockedFlashcards";
-import { firestore } from "../firebase_setup/firebase";
+import mockedFlashcards from "@app/mockups/mockedFlashcards";
+import { firestore } from "@app/src/firebase_setup/firebase";
 
 interface IAddNewFlashcard {
   answer: string;
