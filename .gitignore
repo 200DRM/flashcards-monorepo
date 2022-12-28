@@ -12,6 +12,7 @@
 /.next/
 .next
 .next/
+/apps/devflashcards/.next
 /out/
 
 # production
