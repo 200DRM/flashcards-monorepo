@@ -4,7 +4,7 @@ This project is created using [Next.js](https://nextjs.org/), bootstrapped with 
 
 The main goal of this project it to create flexible flashcards monorepo using [Nx](https://nx.dev/), to create different flashcards applications basing on pre-defined templates.
 
-🟢 DEMO: Application is hosted for demo purposes, please ask me for the link. 😊
+🟢 DEMO: Application is hosted on Firebase for demo purposes like a recruitment process. If you would like to see it please ask me for the link. 😊
 
 ## Getting Started
 
@@ -12,7 +12,7 @@ First, run the development server:
 
 `npm run dev`
 
-Open [http://localhost:3000](http://localhost:3001) with your browser to see the result.
+Open [http://localhost:3001](http://localhost:3001) with your browser to see the result.
 
 ## Deploy on Vercel
 
