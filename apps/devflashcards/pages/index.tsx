@@ -1,18 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import { Categories } from '@shared/components/Categories';
-import { FilterByKeyword } from '@shared/components/FilterByKeyword';
-import { Flashcard } from '@shared/components/Flashcard';
-import { IFlashcardItem } from '@shared/components/types';
-import { FlashcardsContext } from '@shared/contexts/flashcardsContext';
-import { fetchNewFlashcards } from '@shared/src/handles/flashcards';
-import { CategoryName } from '@shared/components/types';
+import { Categories } from "@shared/components/Categories";
+import { FilterByKeyword } from "@shared/components/FilterByKeyword";
+import { Flashcard } from "@shared/components/Flashcard";
+import { IFlashcardItem } from "@shared/components/types";
+import { FlashcardsContext } from "@shared/contexts/flashcardsContext";
+import { fetchNewFlashcards } from "@shared/src/handles/flashcards";
+import { CategoryName } from "@shared/components/types";
 
-import styles from '@app/styles/Home.module.scss';
+import styles from "@app/styles/Home.module.scss";
 
 export default function Home() {
   const [allFlashcards, setAllFlashcards] = useState<IFlashcardItem[]>([]);
-  const [category, setCategory] = useState<CategoryName>('all');
+  const [category, setCategory] = useState<CategoryName>("all");
   const [filteredFlashcards, setFilteredFlashcards] = useState<
     IFlashcardItem[]
   >([]);
@@ -29,7 +29,7 @@ export default function Home() {
             setAllFlashcards(data as IFlashcardItem[]);
             setFilteredFlashcards(data as IFlashcardItem[]);
             sessionStorage.setItem(
-              'numberOfAllFlashcards',
+              "numberOfAllFlashcards",
               String(data.length)
             );
           }

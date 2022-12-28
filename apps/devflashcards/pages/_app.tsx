@@ -1,7 +1,7 @@
-import { AppProps } from 'next/app';
-import Head from 'next/head';
+import { AppProps } from "next/app";
+import Head from "next/head";
 
-import '@app/styles/globals.scss';
+import "@app/styles/globals.scss";
 
 const CustomApp = ({ Component, pageProps }: AppProps) => {
   return (
