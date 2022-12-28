@@ -10,6 +10,8 @@
 
 # next.js
 /.next/
+.next
+.next/
 /out/
 
 # production
@@ -39,3 +41,6 @@ next-env.d.ts
 # firebase
 .firebase
 .firebaserc
+
+dist
+dist/
