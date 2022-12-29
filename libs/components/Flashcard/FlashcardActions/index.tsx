@@ -1,6 +1,8 @@
 import classNames from "classnames";
 import React, { useContext } from "react";
 
+import { config } from "@app/config"; 
+
 import { FlashcardsContext } from "@shared/contexts/flashcardsContext";
 import { onStarClick } from "@shared/helpers/flashcards";
 import { FlashcardID } from "@shared/components/types";
@@ -12,6 +14,9 @@ interface IProps {
 }
 
 export const FlashcardActions = ({ flashcardID }: IProps) => {
+  const {
+    features: { star },
+  } = config;
   const { setStarredFlashcardsIDs, starredFlashcardsIDs } =
     useContext(FlashcardsContext);
 
@@ -22,17 +27,20 @@ export const FlashcardActions = ({ flashcardID }: IProps) => {
 
   return (
     <div className={classNames(styles.cardActions)}>
-      <span
-        className={classNames(styles.starCard, {
-          [styles.starCardActive]: starredFlashcardsIDs?.includes(flashcardID),
-        })}
-        onClick={() => onStarClick({ flashcardID, setStarredFlashcardsIDs })}
-      >
-        ⭐
-        <span className={classNames(styles.starCardTooltip)}>
-          {tooltipText}
+      {star ? (
+        <span
+          className={classNames(styles.starCard, {
+            [styles.starCardActive]:
+              starredFlashcardsIDs?.includes(flashcardID),
+          })}
+          onClick={() => onStarClick({ flashcardID, setStarredFlashcardsIDs })}
+        >
+          ⭐
+          <span className={classNames(styles.starCardTooltip)}>
+            {tooltipText}
+          </span>
         </span>
-      </span>
+      ) : null}
     </div>
   );
 };

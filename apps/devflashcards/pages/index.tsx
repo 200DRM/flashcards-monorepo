@@ -1,21 +1,26 @@
 import { useEffect, useState } from "react";
 
+import { config } from "@app/config";
+
 import { Categories } from "@shared/components/Categories";
 import { FilterByKeyword } from "@shared/components/FilterByKeyword";
 import { Flashcard } from "@shared/components/Flashcard";
 import { IFlashcardItem } from "@shared/components/types";
 import { FlashcardsContext } from "@shared/contexts/flashcardsContext";
+import { Loader } from "@shared/components/Loader";
 import { fetchNewFlashcards } from "@shared/src/handles/flashcards";
 import { CategoryName } from "@shared/components/types";
 
 import styles from "@app/styles/Home.module.scss";
 
 export default function Home() {
+  const { appName } = config;
   const [allFlashcards, setAllFlashcards] = useState<IFlashcardItem[]>([]);
   const [category, setCategory] = useState<CategoryName>("all");
   const [filteredFlashcards, setFilteredFlashcards] = useState<
     IFlashcardItem[]
   >([]);
+  const [isLoading, setLoading] = useState(true);
   const [starredFlashcardsIDs, setStarredFlashcardsIDs] = useState<
     string[] | null
   >(null);
@@ -37,12 +42,15 @@ export default function Home() {
         .catch((err) => console.log(err));
     }
     return () => {
+      setLoading(false);
       subscribe = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <div className={styles.container}>
       <FlashcardsContext.Provider
         value={{
@@ -56,7 +64,7 @@ export default function Home() {
         }}
       >
         <div className={styles.header}>
-          <h1 className={styles.title}>Dev Learn App</h1>
+          <h1 className={styles.title}>{appName}</h1>
         </div>
         <main className={styles.main}>
           <div className={styles.filters}>
