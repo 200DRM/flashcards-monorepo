@@ -1,0 +1,55 @@
+[debug] [2022-12-29T12:51:15.390Z] ----------------------------------------------------------------------
+[debug] [2022-12-29T12:51:15.393Z] Command:       /usr/local/Cellar/node/19.2.0/bin/node /usr/local/bin/firebase deploy
+[debug] [2022-12-29T12:51:15.394Z] CLI Version:   11.19.0
+[debug] [2022-12-29T12:51:15.394Z] Platform:      darwin
+[debug] [2022-12-29T12:51:15.394Z] Node Version:  v19.2.0
+[debug] [2022-12-29T12:51:15.394Z] Time:          Thu Dec 29 2022 13:51:15 GMT+0100 (Central European Standard Time)
+[debug] [2022-12-29T12:51:15.394Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-12-29T12:51:15.469Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-12-29T12:51:15.470Z] > authorizing via signed-in user (dagmara.daschke@gmail.com)
+[debug] [2022-12-29T12:51:15.470Z] [iam] checking project devlearnapp-830c8 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2022-12-29T12:51:15.472Z] > refreshing access token with scopes: []
+[debug] [2022-12-29T12:51:15.474Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2022-12-29T12:51:15.474Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2022-12-29T12:51:15.664Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2022-12-29T12:51:15.664Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2022-12-29T12:51:15.685Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/devlearnapp-830c8:testIamPermissions [none]
+[debug] [2022-12-29T12:51:15.685Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/devlearnapp-830c8:testIamPermissions x-goog-quota-user=projects/devlearnapp-830c8
+[debug] [2022-12-29T12:51:15.685Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/devlearnapp-830c8:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-12-29T12:51:16.573Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/devlearnapp-830c8:testIamPermissions 200
+[debug] [2022-12-29T12:51:16.573Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/devlearnapp-830c8:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-12-29T12:51:16.574Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/devlearnapp-830c8 [none]
+[debug] [2022-12-29T12:51:16.982Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/devlearnapp-830c8 200
+[debug] [2022-12-29T12:51:16.982Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/devlearnapp-830c8 {"projectId":"devlearnapp-830c8","projectNumber":"1051572154249","displayName":"DevLearnApp","name":"projects/devlearnapp-830c8","resources":{"hostingSite":"devlearnapp-830c8"},"state":"ACTIVE","etag":"1_885e4602-0c9c-439e-9156-a233513d7fa9"}
+[info] 
+[info] === Deploying to 'devlearnapp-830c8'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2022-12-29T12:51:16.986Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/devlearnapp-830c8/versions [none]
+[debug] [2022-12-29T12:51:16.986Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/devlearnapp-830c8/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2022-12-29T12:51:18.314Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/devlearnapp-830c8/versions 200
+[debug] [2022-12-29T12:51:18.315Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/devlearnapp-830c8/versions {"name":"projects/1051572154249/sites/devlearnapp-830c8/versions/f6a82849e56da4ec","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[devlearnapp-830c8]: beginning deploy... 
+[info] i  hosting[devlearnapp-830c8]: found 15 files in dist/apps/devflashcards/exported 
+[debug] [2022-12-29T12:51:18.333Z] [hosting] uploading with 200 concurrency
+[debug] [2022-12-29T12:51:18.392Z] [hosting] hash cache [ZGlzdC9hcHBzL2RldmZsYXNoY2FyZHMvZXhwb3J0ZWQ] stored for 15 files
+[debug] [2022-12-29T12:51:18.392Z] [hosting][hash queue][FINAL] {"max":49,"min":27,"avg":35.266666666666666,"active":0,"complete":15,"success":15,"errored":0,"retried":0,"total":15,"elapsed":54}
+[debug] [2022-12-29T12:51:18.394Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/1051572154249/sites/devlearnapp-830c8/versions/f6a82849e56da4ec:populateFiles [none]
+[debug] [2022-12-29T12:51:18.394Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/1051572154249/sites/devlearnapp-830c8/versions/f6a82849e56da4ec:populateFiles {"files":{"/404.html":"3cd1661598d9aad1d32a761160b69945692b5f2c013a8e7295d9b705e380d3c1","/index.html":"3b3f2866d20e33bbe0fe4250a39682fd2ad64e88ad6c6abfed49d099fcd43b69","/_next/static/chunks/pages/_app-2be9c15c021ffe29.js":"64c373856566a868ca56b8adf0e6f93043d316bf03f4b8226241075e7f14e70a","/_next/static/css/558effe560a69224.css":"9335fba43b9af1e6b1193ecad81d017abf6eddf38feda9d68c0c2081dcbf6d0f","/_next/static/chunks/pages/index-7e4832e951179d51.js":"debdd657d097ef4befc83e0e9869392c10a1ddbbeebea7f18b5ac9167935ce37","/_next/static/chunks/pages/_error-15a0bbaa3c2350f1.js":"0e11305bdadba931f64c1efec1412df1be3313c7f3d085f73fa23bdddbcd646f","/_next/static/gKYK_5FrZYBuy374ZrO_F/_ssgManifest.js":"5c126729f9831113842c425975615db312fa26d39f3a9e1baa47d4ad65ac2f90","/_next/static/css/ee222215ab61ef7e.css":"2d55842f89d57f431dd642bd43b009e6cb4e33994c440fcd5bcbf5337fdb958a","/_next/static/gKYK_5FrZYBuy374ZrO_F/_buildManifest.js":"349c489c71b38362e2d6b0d2c630f9010a074661814070b0d4d1ff395a1b0a8c","/_next/static/chunks/webpack-4ddac736f66bc67e.js":"9b101b6e7223d3fa8c03ee507b48cf07ea71f5e7a71c83e78ffe6d39c70f28ff","/_next/static/chunks/main-4e725026f541501b.js":"fe344c40f18b0021c74f06cd10769c0c59ec422eeb581726c1cd07ba63974b94","/_next/static/chunks/121-32c4c9fcc038133c.js":"ef6b428055fcf20df40a6e9643a4aa8f5fcb801116c5b0191b19ab219c75111c","/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js":"aba23275a3c1380bfc8d467fd921b0c209e7182dbdaa02611c3a496b0b3b34ec","/_next/static/chunks/ada6b0e4-3b5521a51d635a6f.js":"0b0dcaa85549d9eec4f1c3e5552b7c84fe8f5407945a68818009d412424bca68","/_next/static/chunks/framework-22108eb722d84e59.js":"8f3639c5e08dddfc721f01de1326f80530e6277dc50cb1bdcdbf9dfa1b83d231"}}
+[debug] [2022-12-29T12:51:18.734Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/1051572154249/sites/devlearnapp-830c8/versions/f6a82849e56da4ec:populateFiles 200
+[debug] [2022-12-29T12:51:18.734Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/1051572154249/sites/devlearnapp-830c8/versions/f6a82849e56da4ec:populateFiles {"uploadRequiredHashes":["9b101b6e7223d3fa8c03ee507b48cf07ea71f5e7a71c83e78ffe6d39c70f28ff","debdd657d097ef4befc83e0e9869392c10a1ddbbeebea7f18b5ac9167935ce37","3b3f2866d20e33bbe0fe4250a39682fd2ad64e88ad6c6abfed49d099fcd43b69","349c489c71b38362e2d6b0d2c630f9010a074661814070b0d4d1ff395a1b0a8c","3cd1661598d9aad1d32a761160b69945692b5f2c013a8e7295d9b705e380d3c1","fe344c40f18b0021c74f06cd10769c0c59ec422eeb581726c1cd07ba63974b94"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/devlearnapp-830c8/versions/f6a82849e56da4ec/files"}
+[debug] [2022-12-29T12:51:18.736Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/devlearnapp-830c8/versions/f6a82849e56da4ec/files/9b101b6e7223d3fa8c03ee507b48cf07ea71f5e7a71c83e78ffe6d39c70f28ff [none]
+[debug] [2022-12-29T12:51:18.736Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/devlearnapp-830c8/versions/f6a82849e56da4ec/files/9b101b6e7223d3fa8c03ee507b48cf07ea71f5e7a71c83e78ffe6d39c70f28ff [stream]
+[debug] [2022-12-29T12:51:18.737Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/devlearnapp-830c8/versions/f6a82849e56da4ec/files/debdd657d097ef4befc83e0e9869392c10a1ddbbeebea7f18b5ac9167935ce37 [none]
+[debug] [2022-12-29T12:51:18.738Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/devlearnapp-830c8/versions/f6a82849e56da4ec/files/debdd657d097ef4befc83e0e9869392c10a1ddbbeebea7f18b5ac9167935ce37 [stream]
+[debug] [2022-12-29T12:51:18.739Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/devlearnapp-830c8/versions/f6a82849e56da4ec/files/3b3f2866d20e33bbe0fe4250a39682fd2ad64e88ad6c6abfed49d099fcd43b69 [none]
+[debug] [2022-12-29T12:51:18.739Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/devlearnapp-830c8/versions/f6a82849e56da4ec/files/3b3f2866d20e33bbe0fe4250a39682fd2ad64e88ad6c6abfed49d099fcd43b69 [stream]
+[debug] [2022-12-29T12:51:18.740Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/devlearnapp-830c8/versions/f6a82849e56da4ec/files/349c489c71b38362e2d6b0d2c630f9010a074661814070b0d4d1ff395a1b0a8c [none]
+[debug] [2022-12-29T12:51:18.740Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/devlearnapp-830c8/versions/f6a82849e56da4ec/files/349c489c71b38362e2d6b0d2c630f9010a074661814070b0d4d1ff395a1b0a8c [stream]
+[debug] [2022-12-29T12:51:18.741Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/devlearnapp-830c8/versions/f6a82849e56da4ec/files/3cd1661598d9aad1d32a761160b69945692b5f2c013a8e7295d9b705e380d3c1 [none]
+[debug] [2022-12-29T12:51:18.741Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/devlearnapp-830c8/versions/f6a82849e56da4ec/files/3cd1661598d9aad1d32a761160b69945692b5f2c013a8e7295d9b705e380d3c1 [stream]
+[debug] [2022-12-29T12:51:18.742Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/devlearnapp-830c8/versions/f6a82849e56da4ec/files/fe344c40f18b0021c74f06cd10769c0c59ec422eeb581726c1cd07ba63974b94 [none]
+[debug] [2022-12-29T12:51:18.742Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/devlearnapp-830c8/versions/f6a82849e56da4ec/files/fe344c40f18b0021c74f06cd10769c0c59ec422eeb581726c1cd07ba63974b94 [stream]
+[debug] [2022-12-29T12:51:18.744Z] [hosting][populate queue][FINAL] {"max":346,"min":346,"avg":346,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":354}
+[debug] [2022-12-29T12:51:18.744Z] [hosting] uploads queued: 6
