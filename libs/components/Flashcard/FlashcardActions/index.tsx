@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import React, { useContext } from "react";
 
-import { config } from "@app/config"; 
+import { config } from "@app/config";
 
 import { FlashcardsContext } from "@shared/contexts/flashcardsContext";
 import { onStarClick } from "@shared/helpers/flashcards";
