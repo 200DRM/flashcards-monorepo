@@ -8,9 +8,9 @@ The main goal of this project it to create flexible flashcards monorepo using [N
 
 ## Getting Started
 
-First, run the development server:
+First, run the development server. For **Dev Learn App** it will be:
 
-`npm run dev`
+`npm run dev:1`
 
 Open [http://localhost:3001](http://localhost:3001) with your browser to see the result.
 

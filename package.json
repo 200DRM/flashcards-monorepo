@@ -1,11 +1,12 @@
 {
   "name": "flashcardsmonorepo",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "license": "MIT",
   "scripts": {
     "build:1": "nx run devflashcards:build",
     "dev:1": "nx run devflashcards:serve:development --port 3001",
     "export:1": "nx run devflashcards:export",
+    "start:1": "nx run devflashcards:serve:production --port 3000",
     "lint": "next lint",
     "prepare": "husky install",
     "prettier": "prettier --write .",
