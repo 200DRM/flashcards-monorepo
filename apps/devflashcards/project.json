@@ -41,8 +41,7 @@
     "export": {
       "executor": "@nrwl/next:export",
       "options": {
-        "buildTarget": "devflashcards:build:production",
-        "outputPath": "dist/apps/devflashcards/exported"
+        "buildTarget": "devflashcards:build:production"
       }
     },
     "test": {
