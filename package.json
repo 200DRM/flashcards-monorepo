@@ -4,8 +4,10 @@
   "license": "MIT",
   "scripts": {
     "build:1": "nx run devflashcards:build",
+    "deploy:1": "gh-pages -d dist/apps/devflashcards/exported",
     "dev:1": "nx run devflashcards:serve:development --port 3001",
     "export:1": "nx run devflashcards:export",
+    "predeploy:1": "nx run devflashcards:build --prod --baseHref=/flashcards-monorepo/",
     "start:1": "nx run devflashcards:serve:production --port 3000",
     "lint": "next lint",
     "prepare": "husky install",
