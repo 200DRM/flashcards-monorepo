@@ -36,8 +36,10 @@ export const Flashcard = () => {
     setIsAnswerVisible(!isAnswerVisible);
 
   useEffect(() => {
-    updateFlashcards(filteredFlashcards);
-  }, [filteredFlashcards]);
+    if (filteredFlashcards?.length > 0) {
+      updateFlashcards(filteredFlashcards);
+    }
+  }, [filteredFlashcards?.length]);
 
   useEffect(() => {
     setStarredFlashcardOnLoad({

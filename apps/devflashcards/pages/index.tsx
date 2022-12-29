@@ -31,6 +31,7 @@ export default function Home() {
       fetchNewFlashcards()
         .then((data) => {
           if (subscribe) {
+            setLoading(false);
             setAllFlashcards(data as IFlashcardItem[]);
             setFilteredFlashcards(data as IFlashcardItem[]);
             sessionStorage.setItem(
@@ -39,10 +40,12 @@ export default function Home() {
             );
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          setLoading(false);
+          console.log(err);
+        });
     }
     return () => {
-      setLoading(false);
       subscribe = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
