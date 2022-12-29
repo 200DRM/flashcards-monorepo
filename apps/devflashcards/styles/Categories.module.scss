@@ -1,13 +1,15 @@
+@import "@app/config/styles.scss";
+
 .categoriesMenu {
   padding: 1em;
   text-align: center;
-  transition: all 0.5s ease-in-out;
+  transition: $basicAnimation;
 
   button {
     cursor: pointer;
     min-width: 12vw;
 
-    @media (min-width: 1000px) {
+    @media (min-width: $desktopWidth) {
       min-width: 10vw;
     }
   }

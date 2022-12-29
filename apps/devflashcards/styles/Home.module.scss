@@ -1,9 +1,11 @@
+@import "@app/config/styles.scss";
+
 .container {
   padding: 0;
 }
 
 .header {
-  background: #0f3d3e;
+  background: $color1;
 
   .title {
     margin: 0;
@@ -29,7 +31,7 @@
   align-items: center;
   flex-direction: column;
 
-  @media (min-width: 1000px) {
+  @media (min-width: $desktopWidth) {
     flex-direction: row;
   }
 }

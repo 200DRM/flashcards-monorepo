@@ -1,11 +1,13 @@
+@import "@app/config/styles.scss";
+
 html,
 body {
-  background: linear-gradient(#100f0f, #0f3d3e);
-  color: rgb(245, 245, 245);
-  font-size: 1.1rem;
+  background: $mainBg;
+  color: $color3;
+  font-size: $fontSize1;
   padding: 0;
   margin: 0;
-  font-family: "Trebuchet MS", "sans-serif";
+  font-family: $fontFamily1;
   line-height: 1.6rem;
   min-height: 100vh;
   width: 100vw;
@@ -21,41 +23,41 @@ a {
 }
 
 button {
-  background: #0f3d3e;
+  background: $color1;
   border: none;
-  border-radius: 6px;
-  color: rgb(245, 245, 245);
+  border-radius: $buttonBorderRadius;
+  color: $color3;
   cursor: pointer;
   margin: 0.1rem;
   padding: 0.4rem;
-  transition: all 0.5s ease-in-out;
+  transition: $basicAnimation;
   outline: none;
 
   &:hover,
   &.active {
-    background: #156364;
+    background: $color4;
   }
 }
 
 code {
-  background: rgb(40, 40, 40);
-  border-radius: 6px;
-  box-shadow: 1px 1px 1px rgb(13, 12, 12);
+  background: $color5;
+  border-radius: $buttonBorderRadius;
+  box-shadow: 1px 1px 1px $color2;
   padding: 0.2rem;
 }
 
 input {
-  background: rgb(245, 245, 245);
+  background: $color3;
   border: none;
-  border-radius: 6px;
-  color: #100f0f;
+  border-radius: $buttonBorderRadius;
+  color: $color2;
   cursor: pointer;
   margin: 0.1rem;
   padding: 0.4rem;
-  transition: all 0.5s ease-in-out;
+  transition: $basicAnimation;
   outline: none;
 
   &:hover {
-    box-shadow: rgb(245, 245, 245) 1px 0 6px;
+    box-shadow: $color3 1px 0 6px;
   }
 }

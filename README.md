@@ -1,4 +1,4 @@
-# Flashcards App
+# Flashcards Monorepo
 
 This project is created using [Next.js](https://nextjs.org/), bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) and connected to [Firebase](https://firebase.google.com/), where available flashcards are stored. Firebase credentials are not shared on Github. To enable running this app locally without credentials I have provided mockup of 4 flashcards, so is is possible to run it locally even without using real database. 🎉
 
@@ -8,9 +8,9 @@ The main goal of this project it to create flexible flashcards monorepo using [N
 
 ## Getting Started
 
-First, run the development server:
+First, run the development server. For **Dev Learn App** it will be:
 
-`npm run dev`
+`npm run dev:1`
 
 Open [http://localhost:3001](http://localhost:3001) with your browser to see the result.
 
