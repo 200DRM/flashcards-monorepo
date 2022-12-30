@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
 
 import { config } from "@app/config";
+import styles from "@app/styles/Home.module.scss";
 
 import { Categories } from "@shared/components/Categories";
 import { FilterByKeyword } from "@shared/components/FilterByKeyword";
 import { Flashcard } from "@shared/components/Flashcard";
-import { IFlashcardItem } from "@shared/components/types";
-import { FlashcardsContext } from "@shared/contexts/flashcardsContext";
 import { Loader } from "@shared/components/Loader";
-import { fetchNewFlashcards } from "@shared/src/handles/flashcards";
+import { IFlashcardItem } from "@shared/components/types";
 import { CategoryName } from "@shared/components/types";
-
-import styles from "@app/styles/Home.module.scss";
+import { FlashcardsContext } from "@shared/contexts/flashcardsContext";
+import { fetchNewFlashcards } from "@shared/src/handles/flashcards";
 
 export default function Home() {
   const { appName } = config;

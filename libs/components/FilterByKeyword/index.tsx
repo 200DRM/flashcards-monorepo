@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 
-import { FlashcardsContext } from "@shared/contexts/flashcardsContext";
-
 import styles from "@app/styles/FilterByKeyword.module.scss";
+
+import { FlashcardsContext } from "@shared/contexts/flashcardsContext";
 
 export const FilterByKeyword = () => {
   const { allFlashcards, setCategory, setFilteredFlashcards } =

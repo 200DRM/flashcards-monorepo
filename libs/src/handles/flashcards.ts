@@ -1,4 +1,5 @@
-import { addDoc, getDocs, collection } from "@firebase/firestore";
+import { addDoc, collection, getDocs } from "@firebase/firestore";
+
 import mockedFlashcards from "@shared/mockups/mockedFlashcards";
 import { firestore } from "@shared/src/firebase_setup/firebase";
 

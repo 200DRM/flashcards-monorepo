@@ -2,8 +2,10 @@ import classNames from "classnames";
 import DOMPurify from "dompurify";
 import { useContext, useEffect, useState } from "react";
 
-import { IFlashcardItem } from "@shared/components/types";
+import styles from "@app/styles/Flashcard.module.scss";
+
 import { FlashcardActions } from "@shared/components/Flashcard/FlashcardActions";
+import { IFlashcardItem } from "@shared/components/types";
 import { FlashcardsContext } from "@shared/contexts/flashcardsContext";
 import {
   getRandomFlashcard,
@@ -11,8 +13,6 @@ import {
   handlePreviousFlashcard,
   setStarredFlashcardOnLoad,
 } from "@shared/helpers/flashcards";
-
-import styles from "@app/styles/Flashcard.module.scss";
 
 export const Flashcard = () => {
   const { filteredFlashcards, starredFlashcardsIDs, setStarredFlashcardsIDs } =

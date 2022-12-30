@@ -1,7 +1,7 @@
 import { FC, useContext } from "react";
 
-import { CategoryName, ICategoryButton } from "@shared/components/types";
 import { CategoryButton } from "@shared/components/CategoryButton";
+import { CategoryName, ICategoryButton } from "@shared/components/types";
 import { FlashcardsContext } from "@shared/contexts/flashcardsContext";
 
 const DatabaseCategory = (

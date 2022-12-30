@@ -1,0 +1,5 @@
+{
+  "importOrder": ["^@app/(.*)$", "^@shared/(.*)$", "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
+}
