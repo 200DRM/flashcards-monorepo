@@ -2,6 +2,7 @@ import { addDoc, collection, getDocs } from "@firebase/firestore";
 
 import mockedFlashcards from "@shared/mockups/mockedFlashcards";
 import { firestore } from "@shared/src/firebase_setup/firebase";
+import { firebaseApiKey } from "@shared/src/firebase_setup/firebase";
 
 interface IAddNewFlashcard {
   answer: string;
@@ -33,7 +34,7 @@ export const addNewFlashcard = ({
 };
 
 export const fetchNewFlashcards = async () => {
-  if (process.env.NEXT_PUBLIC_API_KEY) {
+  if (firebaseApiKey) {
     const colRef = collection(firestore, "flashcards/");
     const snapshots = await getDocs(colRef);
     const flashcards = snapshots.docs.map((doc) => doc.data());

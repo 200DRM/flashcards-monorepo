@@ -37,6 +37,10 @@ button {
   &.active {
     background: $color4;
   }
+
+  &.disabled {
+    background-color: $disabledColor1;
+  }
 }
 
 code {
