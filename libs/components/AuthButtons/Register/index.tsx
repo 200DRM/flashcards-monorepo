@@ -41,6 +41,8 @@ export const Register = ({ email, password }: IProps) => {
   }
 
   return (
-    <button onClick={handleClick}>{loading ? "loading" : "REGISTER"}</button>
+    <button onClick={handleClick} type="submit">
+      {loading ? "loading" : "REGISTER"}
+    </button>
   );
 };

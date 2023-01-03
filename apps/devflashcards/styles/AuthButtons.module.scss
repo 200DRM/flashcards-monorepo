@@ -9,19 +9,41 @@
     flex-direction: row;
   }
 
+  .inputError {
+    background-color: $errorColor2;
+    box-shadow: $errorColor1 1px 0 6px;
+  }
+
   .buttons {
     display: block;
+    text-align: center;
 
     @media (min-width: $mobileXLWidth) {
       display: inline-block;
     }
   }
 
+  .error {
+    color: $errorColor1;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+    position: absolute;
+    margin-left: -15rem;
+    margin-top: 0.6rem;
+
+    @media (min-width: $mobileXLWidth) {
+      margin-left: -9.5rem;
+      margin-top: 1.4rem;
+    }
+  }
+
   button {
     background-color: $color4;
     width: 100%;
+    margin: 0.4rem 0;
 
     @media (min-width: $mobileXLWidth) {
+      margin: auto;
       margin-left: 1rem;
       width: auto;
     }
@@ -34,9 +56,11 @@
   input {
     padding: 0.4rem 0.3rem;
     width: 100%;
+    margin: 0.8rem 0;
 
     @media (min-width: $mobileXLWidth) {
       padding: auto;
+      margin: auto;
       margin-left: 1rem;
       width: auto;
     }

@@ -1,4 +1,5 @@
 export type CategoryName = "all" | "deleted" | "frontend" | "other" | "starred";
+export type Error = { message: string };
 export type FlashcardID = string;
 export interface IFlashcardItem {
   answer: string;
