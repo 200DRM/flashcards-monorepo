@@ -9,19 +9,15 @@ interface IProps {
 }
 
 export const ErrorModal = ({ error }: IProps) => {
-  const [isVisible, setIsVisible] = useState(Boolean(error));
-  console.log("isVisible", isVisible);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
-  }, [error]);
-
-  useEffect(() => {
     const timeout = setTimeout(() => {
       setIsVisible(false);
     }, 1000);
     return () => clearTimeout(timeout);
-  }, []);
+  }, [error]);
 
   return isVisible ? (
     <div className={styles.background}>

@@ -28,7 +28,7 @@ export const AuthButtons = () => {
 
   const loginButton = useMemo(() => {
     return <Login errors={errors} handleSubmit={handleSubmit} />;
-  }, [errors, handleSubmit]);
+  }, [handleSubmit]);
 
   return firebaseApiKey ? (
     <form className={styles.container}>

@@ -58,11 +58,6 @@ export const Template1 = () => {
     // };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const errorModal = useMemo(() => {
-    return <ErrorModal error={error} />;
-  }, [error]);
-
   return (
     <ErrorContext.Provider value={{ error, setError }}>
       {!isLoading ? (
@@ -81,7 +76,6 @@ export const Template1 = () => {
             }}
           >
             <div className={styles.header}>
-              <>{console.log("RERENDER")}</>
               <h1 className={styles.title}>{appName}</h1>
               {auth ? <AuthButtons /> : null}
             </div>
@@ -95,7 +89,7 @@ export const Template1 = () => {
           </FlashcardsContext.Provider>
         </div>
       )}
-      {errorModal}
+      {error ? <ErrorModal error={error} /> : null}
     </ErrorContext.Provider>
   );
 };

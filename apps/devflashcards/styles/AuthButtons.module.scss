@@ -24,17 +24,14 @@
   }
 
   .error {
-    color: $errorColor1;
-    font-size: 0.7rem;
+    background-color: $color2;
+    border-radius: $buttonBorderRadius;
+    font-size: 0.6rem;
     padding: 0.2rem 0.4rem;
+    margin-top: 2rem;
+    margin-left: -7rem;
     position: absolute;
-    margin-left: -15rem;
-    margin-top: 0.6rem;
-
-    @media (min-width: $mobileXLWidth) {
-      margin-left: -9.5rem;
-      margin-top: 1.4rem;
-    }
+    transition: $basicAnimation;
   }
 
   button {

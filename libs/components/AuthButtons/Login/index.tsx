@@ -21,9 +21,7 @@ export const Login = ({ errors, handleSubmit }: IProps) => {
   const { watch, formState } = useForm();
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-  console.log("errorFromContext", errorFromContext);
-  if (error && error.message !== errorFromContext?.message) {
-    console.log("hey, rerender w Login");
+  if (error) {
     setError(error);
   }
 
