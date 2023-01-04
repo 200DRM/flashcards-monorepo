@@ -1,9 +1,10 @@
 import React, { useContext, useMemo } from "react";
 
+import styles from "@app/styles/Categories.module.scss";
+
+import { DatabaseCategoryButton } from "@shared/components/CategoryButton/DatabaseCategoryButton";
 import { StarredCategoryButton } from "@shared/components/CategoryButton/StarredCategoryButton";
 import { FlashcardsContext } from "@shared/contexts/flashcardsContext";
-import styles from "@app/styles/Categories.module.scss";
-import { DatabaseCategoryButton } from "@shared/components/CategoryButton/DatabaseCategoryButton";
 
 export const Categories = () => {
   const { allFlashcards, starredFlashcardsIDs } = useContext(FlashcardsContext);

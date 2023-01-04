@@ -9,7 +9,7 @@
     cursor: pointer;
     min-width: 12vw;
 
-    @media (min-width: $desktopWidth) {
+    @media (min-width: $mobileLandscapeDesktopXS) {
       min-width: 10vw;
     }
   }

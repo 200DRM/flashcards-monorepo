@@ -5,9 +5,18 @@
 }
 
 .header {
+  align-items: center;
   background: $color1;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+
+  @media (min-width: $mobileLandscapeDesktopXS) {
+    flex-direction: row;
+  }
 
   .title {
+    display: inline-block;
     margin: 0;
     line-height: 1.15;
     font-size: 1.5rem;
@@ -31,7 +40,7 @@
   align-items: center;
   flex-direction: column;
 
-  @media (min-width: $desktopWidth) {
+  @media (min-width: $mobileLandscapeDesktopXS) {
     flex-direction: row;
   }
 }

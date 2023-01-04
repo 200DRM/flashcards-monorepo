@@ -1,0 +1,65 @@
+@import "@app/config/styles.scss";
+
+.container {
+  display: inline-block;
+  flex-direction: column;
+  padding: 1rem;
+
+  @media (min-width: $mobileXLWidth) {
+    flex-direction: row;
+  }
+
+  .inputError {
+    background-color: $errorColor2;
+    box-shadow: $errorColor1 1px 0 6px;
+  }
+
+  .buttons {
+    display: block;
+    text-align: center;
+
+    @media (min-width: $mobileXLWidth) {
+      display: inline-block;
+    }
+  }
+
+  .error {
+    background-color: $color2;
+    border-radius: $buttonBorderRadius;
+    font-size: 0.6rem;
+    padding: 0.2rem 0.4rem;
+    margin-top: 2rem;
+    margin-left: -7rem;
+    position: absolute;
+    transition: $basicAnimation;
+  }
+
+  button {
+    background-color: $color4;
+    width: 100%;
+    margin: 0.4rem 0;
+
+    @media (min-width: $mobileXLWidth) {
+      margin: auto;
+      margin-left: 1rem;
+      width: auto;
+    }
+
+    &:hover {
+      background-color: $color5;
+    }
+  }
+
+  input {
+    padding: 0.4rem 0.3rem;
+    width: 100%;
+    margin: 0.8rem 0;
+
+    @media (min-width: $mobileXLWidth) {
+      padding: auto;
+      margin: auto;
+      margin-left: 1rem;
+      width: auto;
+    }
+  }
+}

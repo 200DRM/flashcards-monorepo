@@ -2,12 +2,11 @@ import classNames from "classnames";
 import React, { useContext } from "react";
 
 import { config } from "@app/config";
+import styles from "@app/styles/Flashcard.module.scss";
 
+import { FlashcardID } from "@shared/components/types";
 import { FlashcardsContext } from "@shared/contexts/flashcardsContext";
 import { onStarClick } from "@shared/helpers/flashcards";
-import { FlashcardID } from "@shared/components/types";
-
-import styles from "@app/styles/Flashcard.module.scss";
 
 interface IProps {
   flashcardID: FlashcardID;

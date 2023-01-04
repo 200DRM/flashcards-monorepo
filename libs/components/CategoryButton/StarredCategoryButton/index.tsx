@@ -1,7 +1,7 @@
 import { FC, useContext, useEffect, useMemo } from "react";
 
-import { ICategoryButton } from "@shared/components/types";
 import { CategoryButton } from "@shared/components/CategoryButton";
+import { ICategoryButton } from "@shared/components/types";
 import { FlashcardsContext } from "@shared/contexts/flashcardsContext";
 
 const WithStarringFuctionality = (Component: FC<ICategoryButton>) => {

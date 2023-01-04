@@ -22,7 +22,7 @@
   cursor: pointer;
   min-height: 10rem;
 
-  @media (min-width: $desktopWidth) {
+  @media (min-width: $mobileLandscapeDesktopXS) {
     font-size: 2rem;
     line-height: 2.2rem;
   }
@@ -56,7 +56,7 @@
         }
       }
 
-      @media (min-width: $desktopWidth) {
+      @media (min-width: $mobileLandscapeDesktopXS) {
         &:hover {
           opacity: 1;
 
@@ -88,7 +88,7 @@
   margin-top: 0.1rem;
   min-height: 22rem;
 
-  @media (min-width: $desktopWidth) {
+  @media (min-width: $mobileLandscapeDesktopXS) {
     margin-top: 2rem;
     min-height: 27rem;
   }
@@ -97,14 +97,14 @@
 .navigation {
   padding-bottom: 2rem;
 
-  @media (min-width: $desktopWidth) {
+  @media (min-width: $mobileLandscapeDesktopXS) {
     padding-bottom: 0;
   }
 
   & .arrow {
     min-width: 22vw;
 
-    @media (min-width: $desktopWidth) {
+    @media (min-width: $mobileLandscapeDesktopXS) {
       min-width: 12vw;
     }
   }
@@ -112,7 +112,7 @@
   & .visibility {
     min-width: 32vw;
 
-    @media (min-width: $desktopWidth) {
+    @media (min-width: $mobileLandscapeDesktopXS) {
       min-width: 12vw;
     }
   }
