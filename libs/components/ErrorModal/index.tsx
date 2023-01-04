@@ -15,7 +15,7 @@ export const ErrorModal = ({ error }: IProps) => {
     setIsVisible(true);
     const timeout = setTimeout(() => {
       setIsVisible(false);
-    }, 1000);
+    }, 1500);
     return () => clearTimeout(timeout);
   }, [error]);
 

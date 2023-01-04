@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { config } from "@app/config";
 import styles from "@app/styles/Home.module.scss";
@@ -34,33 +34,33 @@ export const Template1 = () => {
   >(null);
 
   useEffect(() => {
-    // let subscribe = true;
-    // if (filteredFlashcards.length < 1) {
-    //   fetchNewFlashcards()
-    //     .then((data) => {
-    //       if (subscribe) {
-    //         setLoading(false);
-    //         setAllFlashcards(data as IFlashcardItem[]);
-    //         setFilteredFlashcards(data as IFlashcardItem[]);
-    //         sessionStorage.setItem(
-    //           "numberOfAllFlashcards",
-    //           String(data.length)
-    //         );
-    //       }
-    //     })
-    //     .catch((err) => {
-    //       setLoading(false);
-    //       console.log(err);
-    //     });
-    // }
-    // return () => {
-    //   subscribe = false;
-    // };
+    let subscribe = true;
+    if (filteredFlashcards.length < 1) {
+      fetchNewFlashcards()
+        .then((data) => {
+          if (subscribe) {
+            setLoading(false);
+            setAllFlashcards(data as IFlashcardItem[]);
+            setFilteredFlashcards(data as IFlashcardItem[]);
+            sessionStorage.setItem(
+              "numberOfAllFlashcards",
+              String(data.length)
+            );
+          }
+        })
+        .catch((err) => {
+          setLoading(false);
+          console.log(err);
+        });
+    }
+    return () => {
+      subscribe = false;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <ErrorContext.Provider value={{ error, setError }}>
-      {!isLoading ? (
+      {isLoading ? (
         <Loader />
       ) : (
         <div className={styles.container}>

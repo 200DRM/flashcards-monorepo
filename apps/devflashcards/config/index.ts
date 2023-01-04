@@ -1,7 +1,7 @@
 export const config = {
   appName: "Dev Learn App",
   features: {
-    auth: true,
+    auth: false,
     star: true,
   },
 };
