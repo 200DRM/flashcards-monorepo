@@ -7,18 +7,22 @@ import {
   where,
 } from "@firebase/firestore";
 
+import { IFlashcardItem } from "@shared/components/types";
+import { fetchCustomFlashcards, setLocalStorage } from "@shared/helpers/user";
 import { IUserData } from "@shared/helpers/user";
 import mockedFlashcards from "@shared/mockups/mockedFlashcards";
 import { firebaseApiKey } from "@shared/src/firebase_setup/firebase";
 import { firestore } from "@shared/src/firebase_setup/firebase";
 
-export const getUserData = async (userID: string): Promise<IUserData> => {
+interface IUpdateCustomFlashcards {
+  customFlashcards: IFlashcardItem[];
+  userID: string;
+}
+
+export const getUserData = async (uid: string): Promise<IUserData> => {
   if (firebaseApiKey) {
     let userData: unknown;
-    const q = query(
-      collection(firestore, "users"),
-      where("userID", "==", userID)
-    );
+    const q = query(collection(firestore, "users"), where("userID", "==", uid));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       userData = doc.data() as IUserData;
@@ -29,11 +33,15 @@ export const getUserData = async (userID: string): Promise<IUserData> => {
   }
 };
 
-export const setCustomFlashcards = (userID: string) => {
+export const updateCustomFlashcardsInDB = async ({
+  customFlashcards,
+  userID,
+}: IUpdateCustomFlashcards) => {
   const colRef = collection(firestore, "users/");
   const docRef = doc(colRef, userID);
+
   setDoc(docRef, {
     userID,
-    customFlashcards: [{ id: 2, question: "test1Q", answer: "test1A" }],
+    customFlashcards,
   });
 };

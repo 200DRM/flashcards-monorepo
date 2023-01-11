@@ -1,4 +1,8 @@
+@import "@app/config/styles.scss";
+
 .filter {
+  padding: 1rem 0;
+
   input {
     min-width: 16rem;
   }

@@ -1,19 +1,39 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useId, useState } from "react";
 
-import { addNewFlashcard } from "@shared/src/handles/flashcards";
+import { CategoryName, IFlashcardItem, IUser } from "@shared/components/types";
+import { getLocalStorage, setLocalStorage } from "@shared/helpers/user";
+import { updateCustomFlashcardsInDB } from "@shared/src/handles/user";
 
 export const AddFlashcardForm = () => {
   const [answer, setAnswer] = useState("");
   const [category, setCategory] = useState("frontend");
+  const [customFlashcards, setCustomFlashcards] = useState<
+    IFlashcardItem[] | []
+  >([]);
   const [question, setQuestion] = useState("");
+  const [user, setUser] = useState<IUser | null>(null);
 
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const userID = user?.uid;
 
-    if (answer && category && question) {
-      addNewFlashcard({ answer, category, question });
-      setQuestion("");
-      setAnswer("");
+    if (userID && answer && category && question) {
+      const id = `cf${Math.floor(Math.random() * 10000000000000000)}${
+        customFlashcards?.length
+      }`;
+      const newFlashcards = [
+        ...customFlashcards,
+        { id, answer, category: "other" as CategoryName, question },
+      ];
+      updateCustomFlashcardsInDB({
+        userID,
+        customFlashcards: newFlashcards,
+      }).then(() => {
+        setCustomFlashcards(newFlashcards);
+        setLocalStorage("customFlashcards", newFlashcards);
+        setQuestion("");
+        setAnswer("");
+      });
     }
   };
 
@@ -25,6 +45,20 @@ export const AddFlashcardForm = () => {
 
   const handleQuestionChange = (e: ChangeEvent<HTMLInputElement>) =>
     setQuestion(e.target.value);
+
+  useEffect(() => {
+    const customFlashcardsFromLocalStorage =
+      getLocalStorage("customFlashcards");
+    const userFromLocalStorage = getLocalStorage("user");
+
+    if (userFromLocalStorage) {
+      setUser(userFromLocalStorage);
+
+      if (customFlashcardsFromLocalStorage) {
+        setCustomFlashcards(customFlashcardsFromLocalStorage);
+      }
+    }
+  }, []);
 
   return (
     <form onSubmit={handleSubmit}>
