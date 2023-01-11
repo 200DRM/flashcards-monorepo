@@ -1,19 +1,20 @@
 import classNames from "classnames";
 import React from "react";
-import { useContext } from "react";
+import { useCallback, useContext } from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { FieldValues } from "react-hook-form";
 
-import { HandleSubmitHookForm } from "@shared/components/types";
+import { HandleSubmitHookForm, ResetHookForm } from "@shared/components/types";
 import { ErrorContext } from "@shared/contexts/errorContext";
 import { auth } from "@shared/src/firebase_setup/firebase";
-import { setCustomFlashcards } from "@shared/src/handles/user";
+import { updateCustomFlashcardsInDB } from "@shared/src/handles/user";
 
 interface IProps {
   handleSubmit: HandleSubmitHookForm;
+  reset: ResetHookForm;
 }
 
-export const Register = ({ handleSubmit }: IProps) => {
+export const Register = ({ handleSubmit, reset }: IProps) => {
   const { setError } = useContext(ErrorContext);
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
@@ -22,18 +23,19 @@ export const Register = ({ handleSubmit }: IProps) => {
     setError(error);
   }
 
-  const handleRegister = (data: FieldValues) => {
+  const handleRegister = useCallback((data: FieldValues) => {
     const { email, password } = data;
 
     if (!loading) {
       createUserWithEmailAndPassword(email, password);
+      reset({
+        email: "",
+        password: "",
+      });
     }
-  };
+  }, []);
 
   if (user) {
-    const userID = user?.user?.uid;
-    userID && setCustomFlashcards(userID);
-
     return (
       <div>
         <p>Registered User: {user.user.email}</p>

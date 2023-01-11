@@ -1,5 +1,7 @@
 import { addDoc, collection, getDocs } from "@firebase/firestore";
 
+import { setLocalStorage } from "@shared/helpers/user";
+import { getLocalStorage } from "@shared/helpers/user";
 import mockedFlashcards from "@shared/mockups/mockedFlashcards";
 import { firestore } from "@shared/src/firebase_setup/firebase";
 import { firebaseApiKey } from "@shared/src/firebase_setup/firebase";
@@ -10,13 +12,14 @@ interface IAddNewFlashcard {
   question: string;
 }
 
+// for admin only
 export const addNewFlashcard = ({
   answer,
   category,
   question,
 }: IAddNewFlashcard) => {
   const ref = collection(firestore, "flashcards");
-  const id = Number(sessionStorage.getItem("numberOfAllFlashcards")) + 1;
+  const id = Number(getLocalStorage("numberOfAllFlashcards")) + 1;
 
   let data = {
     id,
@@ -29,8 +32,7 @@ export const addNewFlashcard = ({
   } catch (err) {
     console.log(err);
   }
-
-  sessionStorage.setItem("numberOfAllFlashcards", String(id));
+  setLocalStorage("numberOfAllFlashcards", id);
 };
 
 export const fetchNewFlashcards = async () => {

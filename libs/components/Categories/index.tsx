@@ -2,12 +2,14 @@ import React, { useContext, useMemo } from "react";
 
 import styles from "@app/styles/Categories.module.scss";
 
+import { CustomCategoryButton } from "@shared/components/CategoryButton/CustomCategoryButton";
 import { DatabaseCategoryButton } from "@shared/components/CategoryButton/DatabaseCategoryButton";
 import { StarredCategoryButton } from "@shared/components/CategoryButton/StarredCategoryButton";
 import { FlashcardsContext } from "@shared/contexts/flashcardsContext";
 
 export const Categories = () => {
-  const { allFlashcards, starredFlashcardsIDs } = useContext(FlashcardsContext);
+  const { allFlashcards, customFlashcards, starredFlashcardsIDs } =
+    useContext(FlashcardsContext);
 
   const databaseCategories = useMemo(() => {
     if (allFlashcards.length > 0) {
@@ -23,6 +25,15 @@ export const Categories = () => {
     }
   }, [allFlashcards.length]);
 
+  const custom = useMemo(() => {
+    if (customFlashcards?.length) {
+      return <CustomCategoryButton />;
+    } else {
+      return null;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [customFlashcards?.length]);
+
   const starred = useMemo(() => {
     if (starredFlashcardsIDs && starredFlashcardsIDs.length > 0) {
       return <StarredCategoryButton />;
@@ -35,6 +46,7 @@ export const Categories = () => {
   return (
     <div className={styles.categoriesMenu}>
       {databaseCategories}
+      {custom}
       {starred}
     </div>
   );
