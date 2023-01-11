@@ -2,22 +2,27 @@ import { createContext } from "react";
 
 import {
   CategoryName,
-  FlashcardID,
-  IFlashcardItem,
+  Flashcards,
   IUser,
+  SetCategory,
+  SetCustomFlashcards,
+  SetFilteredFlashcards,
+  SetStarredFlashcardsIDs,
+  SetUser,
+  StarredFlashcardsIDs,
 } from "@shared/components/types";
 
 interface IProps {
-  allFlashcards: IFlashcardItem[];
+  allFlashcards: Flashcards;
   category: CategoryName;
-  customFlashcards: IFlashcardItem[];
-  filteredFlashcards: IFlashcardItem[];
-  starredFlashcardsIDs: FlashcardID[] | null;
-  setCategory: (category: CategoryName) => void;
-  setCustomFlashcards: (customFlashcards: IFlashcardItem[]) => void;
-  setFilteredFlashcards: (flashcards: IFlashcardItem[]) => void;
-  setStarredFlashcardsIDs: (ids: FlashcardID[]) => void;
-  setUser: (user: IUser | null) => void;
+  customFlashcards: Flashcards;
+  filteredFlashcards: Flashcards;
+  starredFlashcardsIDs: StarredFlashcardsIDs;
+  setCategory: SetCategory;
+  setCustomFlashcards: SetCustomFlashcards;
+  setFilteredFlashcards: SetFilteredFlashcards;
+  setStarredFlashcardsIDs: SetStarredFlashcardsIDs;
+  setUser: SetUser;
   user: IUser | null;
 }
 

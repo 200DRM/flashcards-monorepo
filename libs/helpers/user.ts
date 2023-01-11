@@ -1,8 +1,8 @@
-import { IFlashcardItem } from "@shared/components/types";
+import { Flashcards, IFlashcardItem } from "@shared/components/types";
 import { getUserData } from "@shared/src/handles/user";
 
 export interface IUserData {
-  customFlashcards: IFlashcardItem[];
+  customFlashcards: Flashcards;
   userID: string;
 }
 
@@ -10,7 +10,7 @@ export const fetchCustomFlashcards = async (uid: string) => {
   const customFlashcards = await getUserData(uid).then(
     (data: IUserData) => data?.customFlashcards
   );
-  const array: IFlashcardItem[] = [];
+  const array: Flashcards = [];
 
   if (customFlashcards) {
     customFlashcards.forEach((flashcard: IFlashcardItem) => {

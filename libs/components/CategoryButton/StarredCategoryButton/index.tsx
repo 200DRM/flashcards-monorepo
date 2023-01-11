@@ -1,8 +1,9 @@
-import { FC, useContext, useEffect, useMemo } from "react";
+import { FC, useContext, useMemo } from "react";
 
 import { CategoryButton } from "@shared/components/CategoryButton";
 import { ICategoryButton } from "@shared/components/types";
 import { FlashcardsContext } from "@shared/contexts/flashcardsContext";
+import { useUpdateStarredFlashcards } from "@shared/hooks/useUpdateStarredFlashcards";
 
 const WithStarringFuctionality = (Component: FC<ICategoryButton>) => {
   const {
@@ -17,21 +18,11 @@ const WithStarringFuctionality = (Component: FC<ICategoryButton>) => {
     starredFlashcardsIDs?.includes(item.id)
   );
 
-  useEffect(() => {
-    const starredFlashcardsIDFromStorage =
-      localStorage.getItem("starredFlashcards");
-
-    const ids = starredFlashcardsIDFromStorage
-      ? [...JSON.parse(starredFlashcardsIDFromStorage)]
-      : [];
-
-    const hasLengthChanged = ids.length !== starredFlashcardsIDs?.length;
-
-    if (hasLengthChanged) {
-      setStarredFlashcardsIDs(ids);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [allFlashcards.length, starredFlashcardsIDs?.length]);
+  useUpdateStarredFlashcards({
+    allFlashcards,
+    setStarredFlashcardsIDs,
+    starredFlashcardsIDs,
+  });
 
   const starredCategoryButton = useMemo(() => {
     const areAnyStarred = allFlashcards.length > 0;
