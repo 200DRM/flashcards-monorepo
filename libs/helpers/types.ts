@@ -1,22 +1,27 @@
-import { FlashcardID, IFlashcardItem } from "@shared/components/types";
+import {
+  FlashcardID,
+  Flashcards,
+  IFlashcardItem,
+  SetStarredFlashcardsIDs,
+} from "@shared/components/types";
 
 export interface IChangeFlashcard {
   flashcard: IFlashcardItem;
-  filteredFlashcards: IFlashcardItem[];
+  filteredFlashcards: Flashcards;
   setFlashcard: (item: IFlashcardItem) => void;
 }
 
 export interface IGetRandomFlashcard {
-  flashcards: IFlashcardItem[];
+  flashcards: Flashcards;
   prevItem?: IFlashcardItem;
 }
 
 export interface IHandleStarClick {
   flashcardID: FlashcardID;
-  setStarredFlashcardsIDs: (ids: FlashcardID[]) => void;
+  setStarredFlashcardsIDs: SetStarredFlashcardsIDs;
 }
 
 export interface ISetStarredFlashcardOnLoad {
   contextLength?: number;
-  setStarredFlashcardsIDs: (ids: FlashcardID[]) => void;
+  setStarredFlashcardsIDs: SetStarredFlashcardsIDs;
 }

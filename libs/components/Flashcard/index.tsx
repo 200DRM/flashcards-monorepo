@@ -8,10 +8,10 @@ import { FlashcardActions } from "@shared/components/Flashcard/FlashcardActions"
 import { IFlashcardItem } from "@shared/components/types";
 import { FlashcardsContext } from "@shared/contexts/flashcardsContext";
 import {
-  getRandomFlashcard,
   handleNextFlashcard,
   handlePreviousFlashcard,
   setStarredFlashcardOnLoad,
+  updateAvailableFlashcards,
 } from "@shared/helpers/flashcards";
 
 export const Flashcard = () => {
@@ -23,21 +23,12 @@ export const Flashcard = () => {
 
   const sanitizer = DOMPurify.sanitize;
 
-  const updateFlashcards = (filteredFlashcards: IFlashcardItem[]) => {
-    if (filteredFlashcards) {
-      const initialRandomFlashcard = getRandomFlashcard({
-        flashcards: filteredFlashcards,
-      });
-      setFlashcard(initialRandomFlashcard);
-    }
-  };
-
   const handleChangeAnswerVisibility = () =>
     setIsAnswerVisible(!isAnswerVisible);
 
   useEffect(() => {
     if (filteredFlashcards?.length > 0) {
-      updateFlashcards(filteredFlashcards);
+      updateAvailableFlashcards({ filteredFlashcards, setFlashcard });
     }
   }, [filteredFlashcards?.length]);
 

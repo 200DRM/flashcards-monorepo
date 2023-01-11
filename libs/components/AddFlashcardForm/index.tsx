@@ -1,15 +1,14 @@
-import { ChangeEvent, useContext, useEffect, useId, useState } from "react";
+import { ChangeEvent, useState } from "react";
 
-import { CategoryName, IFlashcardItem, IUser } from "@shared/components/types";
-import { getLocalStorage, setLocalStorage } from "@shared/helpers/user";
+import { CategoryName, Flashcards, IUser } from "@shared/components/types";
+import { setLocalStorage } from "@shared/helpers/user";
+import { useSetUserDataOnLoadInStore } from "@shared/hooks/useSetUserDataOnLoadInStore";
 import { updateCustomFlashcardsInDB } from "@shared/src/handles/user";
 
 export const AddFlashcardForm = () => {
   const [answer, setAnswer] = useState("");
   const [category, setCategory] = useState("frontend");
-  const [customFlashcards, setCustomFlashcards] = useState<
-    IFlashcardItem[] | []
-  >([]);
+  const [customFlashcards, setCustomFlashcards] = useState<Flashcards | []>([]);
   const [question, setQuestion] = useState("");
   const [user, setUser] = useState<IUser | null>(null);
 
@@ -46,19 +45,7 @@ export const AddFlashcardForm = () => {
   const handleQuestionChange = (e: ChangeEvent<HTMLInputElement>) =>
     setQuestion(e.target.value);
 
-  useEffect(() => {
-    const customFlashcardsFromLocalStorage =
-      getLocalStorage("customFlashcards");
-    const userFromLocalStorage = getLocalStorage("user");
-
-    if (userFromLocalStorage) {
-      setUser(userFromLocalStorage);
-
-      if (customFlashcardsFromLocalStorage) {
-        setCustomFlashcards(customFlashcardsFromLocalStorage);
-      }
-    }
-  }, []);
+  useSetUserDataOnLoadInStore({ setCustomFlashcards, setUser });
 
   return (
     <form onSubmit={handleSubmit}>

@@ -1,3 +1,4 @@
+import { Flashcards, IFlashcardItem } from "@shared/components/types";
 import {
   IChangeFlashcard,
   IGetRandomFlashcard,
@@ -94,5 +95,22 @@ export const handleNextFlashcard = ({
     } else {
       setFlashcard(filteredFlashcards[indexOfCurrentFlashcard + 1]);
     }
+  }
+};
+
+interface IUpdateAvailableFlashcards {
+  filteredFlashcards: Flashcards;
+  setFlashcard: (item: IFlashcardItem) => void;
+}
+
+export const updateAvailableFlashcards = ({
+  filteredFlashcards,
+  setFlashcard,
+}: IUpdateAvailableFlashcards) => {
+  if (filteredFlashcards) {
+    const initialRandomFlashcard = getRandomFlashcard({
+      flashcards: filteredFlashcards,
+    });
+    setFlashcard(initialRandomFlashcard);
   }
 };

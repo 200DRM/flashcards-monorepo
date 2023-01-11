@@ -7,15 +7,14 @@ import {
   where,
 } from "@firebase/firestore";
 
-import { IFlashcardItem } from "@shared/components/types";
-import { fetchCustomFlashcards, setLocalStorage } from "@shared/helpers/user";
+import { Flashcards } from "@shared/components/types";
 import { IUserData } from "@shared/helpers/user";
 import mockedFlashcards from "@shared/mockups/mockedFlashcards";
 import { firebaseApiKey } from "@shared/src/firebase_setup/firebase";
 import { firestore } from "@shared/src/firebase_setup/firebase";
 
 interface IUpdateCustomFlashcards {
-  customFlashcards: IFlashcardItem[];
+  customFlashcards: Flashcards;
   userID: string;
 }
 
